@@ -5,7 +5,7 @@ import (
 	"database/sql"
 )
 
-type ErrorLogFunc func (format string, args ...interface{})
+type ErrorLogFunc func(format string, args ...interface{})
 
 type DB interface {
 	ROHandle() (*sql.DB, error)

@@ -3,6 +3,7 @@ package dbtx
 import (
 	"database/sql"
 	"fmt"
+
 	"github.com/vovanec/xsync"
 )
 
@@ -58,16 +59,16 @@ func (d *db) ROHandle() (*sql.DB, error) {
 func (d *db) PreparedTransaction(stmt string) PreparedTransaction {
 
 	return &preparedTransaction{
-		db:   d,
-		stmt: stmt,
-		errorLog:  d.errorLog,
+		db:       d,
+		stmt:     stmt,
+		errorLog: d.errorLog,
 	}
 }
 
 func (d *db) Transaction() Transaction {
 
 	return &transaction{
-		db:  d,
+		db:       d,
 		errorLog: d.errorLog,
 	}
 }
@@ -91,7 +92,6 @@ func (d *db) getDBHandle(isWriter bool) (*sql.DB, error) {
 		db.SetMaxIdleConns(connPoolConf.MaxIdleConnections())
 	}
 
-
 	return db, nil
 }
 
@@ -102,12 +102,11 @@ func NewDB(conf Config) DB {
 	if errLogConf, ok := conf.(ErrorLogConfig); ok {
 		errLogFunc = errLogConf.ErrorLog()
 	} else {
-		errLogFunc = func (format string, args ...interface{}) {}
+		errLogFunc = func(format string, args ...interface{}) {}
 	}
 
 	return &db{
-		conf: conf,
-		errorLog:  errLogFunc,
+		conf:     conf,
+		errorLog: errLogFunc,
 	}
 }
-

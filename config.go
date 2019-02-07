@@ -1,12 +1,12 @@
 package dbtx
 
 type DefaultConfig struct {
-	driverName string
-	roDSN string
-	rwDSN string
+	driverName  string
+	roDSN       string
+	rwDSN       string
 	maxOpenConn int
 	maxIdleConn int
-	errorLog ErrorLogFunc
+	errorLog    ErrorLogFunc
 }
 
 func (c *DefaultConfig) DriverName() string {
@@ -51,8 +51,8 @@ func (c *DefaultConfig) WithErrorLog(errLog ErrorLogFunc) Config {
 func NewDefaultConfig(driverName, roDSN, rwDSN string) *DefaultConfig {
 	return &DefaultConfig{
 		driverName: driverName,
-		roDSN: roDSN,
-		rwDSN: rwDSN,
-		errorLog: func (format string, args ...interface{}) {},
+		roDSN:      roDSN,
+		rwDSN:      rwDSN,
+		errorLog:   func(format string, args ...interface{}) {},
 	}
 }
