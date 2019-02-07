@@ -33,17 +33,17 @@ func (c *DefaultConfig) ErrorLog() ErrorLogFunc {
 	return c.errorLog
 }
 
-func (c *DefaultConfig) WithMaxOpenConnections(maxConn int) Config {
+func (c *DefaultConfig) WithMaxOpenConnections(maxConn int) *DefaultConfig {
 	c.maxOpenConn = maxConn
 	return c
 }
 
-func (c *DefaultConfig) WithMaxIdleConnections(maxConn int) Config {
+func (c *DefaultConfig) WithMaxIdleConnections(maxConn int) *DefaultConfig {
 	c.maxIdleConn = maxConn
 	return c
 }
 
-func (c *DefaultConfig) WithErrorLog(errLog ErrorLogFunc) Config {
+func (c *DefaultConfig) WithErrorLog(errLog ErrorLogFunc) *DefaultConfig {
 	c.errorLog = errLog
 	return c
 }
